@@ -86,5 +86,22 @@
 		<br/>
 	
 	<div th:replace="admin/fragment/footer:: footerName"></div>
+	<!--added jquery CDN--> 
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<!--added editor-->
+	<script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+	
+	<!--using js intergate editor with textarea by id-->
+	<script>
+                        ClassicEditor
+                                .create( document.querySelector( '#content' ) )
+                                .then( editor => {
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+     </script>
+	
 </body>
 </html>
