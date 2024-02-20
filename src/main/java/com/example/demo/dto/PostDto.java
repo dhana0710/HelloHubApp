@@ -19,6 +19,8 @@ import java.time.LocalDateTime;
 //@AllArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PostDto {
 
 	//It act as model between Controller layer to view layer

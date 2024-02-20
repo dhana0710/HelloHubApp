@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.PostDto;
+import com.example.demo.entity.Post;
 import com.example.demo.mapper.PostMapper;
 import com.example.demo.repository.PostRepository;
 import com.example.demo.service.PostService;
@@ -16,6 +17,8 @@ import com.example.demo.service.PostService;
 public class PostServiceImpl implements PostService {
 	
 	public PostRepository postRepository;
+	//.findAll()
+	//.save(entity)
 	
 	@Autowired
 	public PostServiceImpl(PostRepository postRepository) {
@@ -26,6 +29,13 @@ public class PostServiceImpl implements PostService {
 	public List<PostDto> findAllPosts() {
 		List<PostDto> postDto=postRepository.findAll().stream().map((post)->PostMapper.mapToPostDto(post)).collect(Collectors.toList());
 		 return postDto;
+	}
+
+	@Override
+	public void createPost(PostDto postDto) {
+		Post post= PostMapper.mapToPost(postDto);
+		this.postRepository.save(post);
+		
 	}
 	
 	

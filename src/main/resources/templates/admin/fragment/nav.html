@@ -3,7 +3,8 @@
 
 <body>
 
-<nav th:fragment="navName" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav th:fragment="navName" 
+	class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><img width="35" height="35" src="https://img.icons8.com/badges/30/marker-h.png" alt="marker-h"/> HelloHub App</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,6 +14,9 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" th:href="@{/admin/posts}">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin/posts/newpost}">New Post</a>
         </li>
       </ul>
     </div>
