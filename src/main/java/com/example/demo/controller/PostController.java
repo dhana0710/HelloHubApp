@@ -2,13 +2,18 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.naming.Binding;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.example.demo.dto.PostDto;
 import com.example.demo.service.PostService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,12 +48,17 @@ public class PostController {
 	
 	//handler method for post submition
 	@PostMapping("/admin/posts")
-	public String createPost(@ModelAttribute PostDto postDto) {
+	public String createPost(@Valid @ModelAttribute("post") PostDto postDto, BindingResult theResult, Model model) {
+		
+		if(theResult.hasErrors()) {
+			model.addAttribute("post",postDto);
+			return "/admin/create_post";
+		}
+		
 		postDto.setUrl(getURL(postDto.getTitle()));
 		this.postService.createPost(postDto);
 		return "redirect:/admin/posts";
 	}
-	
 	public static String getURL(String postTitle) {
 		String title=postTitle.trim().toLowerCase();
 		String url=title.replaceAll("\\s+", "-");
