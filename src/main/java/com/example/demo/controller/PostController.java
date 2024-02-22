@@ -86,14 +86,19 @@ public class PostController {
 			model.addAttribute("post",postDto);
 			return "admin/edit_post";
 		}
-		
+		//for update we need id, without it by defautl save operation took place.
 		postService.updatePost(postDto);
-		return "redirect:/admin/posts";
-		
-		
+		return "redirect:/admin/posts";	
 		
 	}
 	
+	
+	//handler methos to handle delete post request
+	@GetMapping("/admin/posts/{postid}/delete")
+	public String deletePost(@PathVariable("postid") Long id) {
+		postService.deletePost(id);
+		return "redirect:/admin/posts";
+	}
 	
 	
 	
