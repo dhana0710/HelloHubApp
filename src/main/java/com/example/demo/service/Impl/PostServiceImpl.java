@@ -37,6 +37,20 @@ public class PostServiceImpl implements PostService {
 		this.postRepository.save(post);
 		
 	}
+
+	@Override
+	public PostDto findPostById(Long id) {
+		Post post=postRepository.findById(id).get();
+		
+		return PostMapper.mapToPostDto(post);
+	}
+
+	@Override
+	public void updatePost(PostDto postDto) {
+		Post post=PostMapper.mapToPost(postDto);
+		postRepository.save(post);
+		
+	}
 	
 	
 
