@@ -101,6 +101,15 @@ public class PostController {
 	}
 	
 	
+	//handler method to handle view post request
+	@GetMapping("/admin/posts/{posturl}/view")
+	public String viewPost(@PathVariable("posturl") String url,Model model){
+		PostDto postDto=postService.viewPost(url);
+		model.addAttribute("post", postDto);
+		return "/admin/view_post";
+	}
+	
+	
 	
 	
 	

@@ -2,6 +2,7 @@ package com.example.demo.service.Impl;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,12 @@ public class PostServiceImpl implements PostService {
 	public void deletePost(Long id) {
 		postRepository.deleteById(id);
 		
+	}
+
+	@Override
+	public PostDto viewPost(String url) {
+		Optional<Post> post=postRepository.findByUrl(url);
+		return PostMapper.mapToPostDto(post.get());
 	}
 	
 	
