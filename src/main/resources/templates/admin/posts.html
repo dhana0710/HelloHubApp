@@ -12,11 +12,24 @@
 
 <div th:replace="admin/fragment/nav :: navName"></div>
 <br/>
-<br/>
 <div class="container" align="center">
 	<div class="row mx-auto">
 		<h1>List Posts</h1>
 	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group">
+				<form class="form-inline" th:action="@{/admin/posts/search}">
+					<div class="input-group">
+						<input type="text" class="form-control" name="query"/>
+						<button type="submit" class="btn btn-primary">Search</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</br>
+
 	<table class="table table-primary table-hover">
 		<thead class="table-secondary">
 			<th style="width:10%;">#</th>
@@ -30,7 +43,8 @@
 				  <td th:text="${postIterate.count}"></td>
 				  <td th:text="${post.title}"></td>
 				  <td th:text="${post.shortDescription}"></td>
-				  <td th:text="${post.createdOn}"></td>
+				  <td th:text="${#temporals.format(post.createdOn,'yyyy-MM-dd')}"></td>
+				  
 				  <td>
 					  <a th:href="@{/admin/posts/{postid}/edit(postid=${post.id})}" class="btn btn-primary">Edit</a>
 					  <a th:href="@{/admin/posts/{postid}/delete(postid=${post.id})}" class="btn btn-danger">Delete</a>

@@ -17,6 +17,8 @@ public interface PostService {
 	void deletePost(Long id);
 	
 	PostDto viewPost(String url);
+	
+	List<PostDto> searchPost(String name);
 
 	
 }

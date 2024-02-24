@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PostController {
@@ -108,6 +109,17 @@ public class PostController {
 		model.addAttribute("post", postDto);
 		return "/admin/view_post";
 	}
+	
+	//handler method to handle search post request
+	///admin/posts/search?query=name
+	@GetMapping("/admin/posts/search")
+	public String searchPost(@RequestParam(value ="query") String name,Model model) {
+		List<PostDto> postDto=postService.searchPost(name);
+		model.addAttribute("posts", postDto);
+		return "admin/posts";
+	}
+	
+	
 	
 	
 	

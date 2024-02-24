@@ -64,6 +64,15 @@ public class PostServiceImpl implements PostService {
 		Optional<Post> post=postRepository.findByUrl(url);
 		return PostMapper.mapToPostDto(post.get());
 	}
+
+	@Override
+	public List<PostDto> searchPost(String name) {
+			List<Post> posts=postRepository.searchPost(name);
+			return posts.stream().map(PostMapper::mapToPostDto).collect(Collectors.toList());
+	}
+	
+	
+
 	
 	
 
