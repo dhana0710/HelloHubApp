@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.dto.CommentDto;
 import com.example.demo.dto.PostDto;
 import com.example.demo.service.PostService;
 
@@ -35,6 +36,9 @@ public class HubController {
 	@GetMapping("/post/{postUrl}")
 	private String showPost(@PathVariable("postUrl") String postUrl,Model model) {
 		PostDto postDto=postService.findPostByUrl(postUrl);
+		//create new comment
+		CommentDto commentDto=new CommentDto();
+		model.addAttribute("comment", commentDto);
 		model.addAttribute("post", postDto);
 		return "hub/hub_post";
 	}

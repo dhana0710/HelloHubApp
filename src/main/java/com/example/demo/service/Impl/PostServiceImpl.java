@@ -13,7 +13,6 @@ import com.example.demo.dto.PostDto;
 import com.example.demo.entity.Post;
 import com.example.demo.mapper.PostMapper;
 import com.example.demo.repository.PostRepository;
-//import com.example.demo.repository.PostRepository;
 import com.example.demo.service.PostService;
 
 @Service
